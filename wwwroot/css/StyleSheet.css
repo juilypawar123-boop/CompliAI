@@ -1,0 +1,273 @@
+﻿body {
+    font-family: 'Californian FB', sans-serif;
+    background: radial-gradient(circle at 20% 20%, rgba(56,189,248,0.15), transparent 40%), radial-gradient(circle at 80% 30%, rgba(99,102,241,0.12), transparent 45%), linear-gradient(180deg, #050B1E 0%, #020617 100%);
+    color: white;
+    margin: 0;
+    padding: 0;
+    font-size: 22px;
+}
+
+/* Panel base */
+.panel {
+    position: relative;
+    background: linear-gradient(160deg, rgba(15,23,42,0.95), rgba(2,6,23,0.9));
+    border: 1px solid rgba(99,102,241,0.25);
+    border-radius: 16px;
+    padding: 1rem;
+    box-shadow: 0 0 0 1px rgba(56,189,248,0.15), 0 20px 40px rgba(0,0,0,0.6), inset 0 0 30px rgba(56,189,248,0.08);
+    margin: 0.5rem;
+}
+/*Hide all my navbar panel content*/
+.panel-content {
+    display: none; 
+}
+
+    .panel-content.active {
+        display: block; 
+    }
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 120px;
+    padding: 0 2rem;
+    position: fixed;
+    width: 90%;
+    top: 0;
+    z-index: 100;
+    margin-left: 60px;
+    margin-top: 40px;
+}
+.nav-tabs {
+    list-style: none; 
+    display: flex; 
+    gap: 1.5rem;
+    padding: 0;
+    margin: 0;
+}
+
+    .nav-tabs li {
+        cursor: pointer;
+        padding: 0.5rem 1rem;
+        border-radius: 10px;
+        color: #A5B4FC;
+        transition: all 0.2s ease;
+    }
+
+        .nav-tabs li:hover {
+            background: rgba(56,189,248,0.1);
+            color: #38BDF8;
+        }
+
+        .nav-tabs li.active {
+            background: linear-gradient(135deg, rgba(56,189,248,0.25), rgba(99,102,241,0.25));
+            color: #38BDF8;
+            box-shadow: inset 0 0 15px rgba(56,189,248,0.15), 0 0 10px rgba(56,189,248,0.2);
+        }
+
+/* Main Canvas - 3 Section Layout */
+.main.canvas {
+    display: grid;
+    grid-template-columns: 1.6fr 1.6fr 1.6fr;
+    gap: 1rem;
+    margin-top: 170px;
+    padding: 2rem 2rem;
+}
+
+/* Left Panel*/
+.left-panel
+{
+    display: flex;
+    flex-direction: column;
+    gap: 50rem;
+    padding: 20px;
+    height: 1450px;
+}
+
+/* Right Panel*/
+.right-panel
+{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    height: 1450px;
+    padding: 20px;
+    
+}
+
+/* Center Panel*/
+.center.panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    height: 700px;
+    gap: 20px;
+    
+}
+
+/* Bottom Section */
+.bottom-section {
+    display: grid;
+    grid-template-columns: 10fr;
+    gap: 1rem;
+    padding: 2rem;
+    align-items: center;
+    column-width: 400px; /* this does nothing in grid */
+    margin-top: 0px;
+}
+
+
+/* Buttons */
+.btn-primary {
+    background: linear-gradient(135deg, #38BDF8, #6366F1);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    padding: 1rem 1.5rem;
+    margin: 1rem 3rem;
+    cursor: pointer;
+    align-items: center;
+    box-shadow: 0 0 15px rgba(56,189,248,0.6), inset 0 0 10px rgba(255,255,255,0.15);
+}
+
+    .btn-primary:hover {
+        box-shadow: 0 0 25px rgba(56,189,248,0.8), inset 0 0 15px rgba(255,255,255,0.25);
+    }
+
+/* Footer */
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    position: fixed;
+    bottom: 0;
+    width: 20%;
+    background: linear-gradient(160deg, rgba(15,23,42,0.95), rgba(2,6,23,0.9));
+    border-top: 1px solid rgba(99,102,241,0.25);
+    box-shadow: 0 0 0 1px rgba(56,189,248,0.15), 0 -10px 20px rgba(0,0,0,0.6), inset 0 0 20px rgba(56,189,248,0.08);
+    z-index: 100;
+    height: 30px;
+    margin-left: 700px;
+    margin-right: 100px;
+    font-size: 14px;
+}
+
+.footer-tabs {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    padding: 0;
+    margin: 0;
+    align-items:center;
+}
+
+    .footer-tabs li {
+        cursor: pointer;
+        padding: 0.4rem 0.8rem;
+        border-radius: 8px;
+        color: #A5B4FC;
+        transition: all 0.2s ease;
+    }
+
+        .footer-tabs li:hover {
+            background: rgba(56,189,248,0.1);
+            color: #38BDF8;
+        }
+
+        .footer-tabs li.active {
+            background: linear-gradient(135deg, rgba(56,189,248,0.25), rgba(99,102,241,0.25));
+            color: #38BDF8;
+            box-shadow: inset 0 0 15px rgba(56,189,248,0.15), 0 0 10px rgba(56,189,248,0.2);
+        }
+
+/* Hide all footer panels by default */
+footer .panel-content {
+    display: none;
+}
+
+    /* Only show the active panel */
+    footer .panel-content.active {
+        display: block;
+    }
+
+/* RISK INDICATORS LAYOUT*/
+.risk-meter 
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.risk-gauge 
+{
+    background: rgba(15,23,42,0.85); /* floating panel feel */
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(56,189,248,0.3), inset 0 0 15px rgba(56,189,248,0.1);
+}
+
+/* COMPLIANCE SHIELD GUAGE*/
+.compliance-shield {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 3rem;
+    gap: 0.8rem;
+    margin-top: 5rem;
+}
+
+    .compliance-shield canvas {
+        background: transparent; /* keep canvas transparent */
+        box-shadow: 0 0 25px rgba(56,189,248,0.35), inset 0 0 20px rgba(99,102,241,0.15);
+    }
+
+    .compliance-shield p {
+        font-size: 3rem;
+        font-weight: 600;
+        color: #A5B4FC;
+    }
+
+/* AI Summary (cleanup + alignment) */
+.ai-summary {
+    max-width: 600px;
+    margin-top: 10rem;
+    margin-bottom: 5rem;
+}
+
+.ai-actions {
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.8rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.ai-chat {
+    background: rgba(15,23,42,0.9);
+    border: 1px solid rgba(99,102,241,0.3);
+    border-radius: 12px;
+    padding: 0.6rem 0.8rem;
+    color: white;
+    min-width: 300px;
+    height: 200px;
+    margin-top: 3rem;
+    align-content: center;
+    font-size: 25px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .main-canvas {
+        grid-template-columns: 5fr;
+    }
+
+    .bottom-section {
+        grid-template-columns: fr;
+    }
+}

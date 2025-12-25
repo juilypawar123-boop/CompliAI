@@ -1,0 +1,248 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CompliAI - AI Compliance &Aacute; Policy Assistant</title>
+    <link rel="stylesheet" href="css/StyleSheet.css" />
+</head>
+<body>
+    <!-- Top Navigation Bar--->
+
+    <nav class="navbar panel">
+        <div class="nav-left">
+            <!----LEFT PART OF NAVIGATION BAR-->
+            <h1>CompliAI</h1>
+        </div>
+        <div class="nav-center">
+            <ul class="nav-tabs">
+                <!-----Tabs on Navbar-->
+                <li class="active" data-tab="overview">Overview</li>
+                <li data-tab="policies">Policies</li>
+                <li data-tab="risks">Risks</li>
+                <li data-tab="reports">Reports</li>
+                <li data-tab="settings">Settings</li>
+            </ul>
+        </div>
+       
+        <!----RIGHT PART OF NAVIGATION BAR-->
+        <div class="nav-right">
+            <select class="company selecter">
+                <option>Company A</option>
+                <option>Company B</option>
+                <option>Company C</option>
+                <option>Company D</option>
+            </select>
+            <div class="user-avatar">👤</div>
+        </div>
+    </nav>
+
+    <!-----MAIN CANVAS (MY 3 SECTION LAYOUT)----->
+
+    <main class="main canvas">
+        <!----LEFT PANEL-->
+        <aside class="left-panel panel">
+            <!----CARD 1 (COMPANY CONTEXT)-->
+            <div class="card">
+                <h3>Company context</h3>
+                <p>Name: Crownverse Ltd</p>
+                <p>Country: Germany</p>
+                <label>
+                    Industry
+                    <select>
+                        <option>Tech</option>
+                        <option>Hospitality</option>
+                        <option>Aviation</option>
+                        <option>Healthcare</option>
+                        <option>IT</option>
+                    </select>
+                </label>
+                <label>
+                    Company Size
+                    <select>
+                        <option>1-10</option>
+                        <option>10-30</option>
+                        <option>30-50</option>
+                        <option>50-100</option>
+                        <option>100-500</option>
+                    </select>
+                </label>
+
+                <!---------CARD 2 (REHULATION SCOPE)-->
+                <div class="card">
+                    <h3>Regulation Scope</h3>
+                    <label><input type="checkbox" checked> GDPR</label>
+                    <label><input type="checkbox"> HR Compliance</label>
+                    <label><input type="checkbox"> Data Retention</label>
+                    <label><input tyep="checkbox"> Internal Policies</label>
+                </div>
+
+                <!----------CARD 3 (ACTION)----->
+                <div class="card">
+                    <h3>Actions</h3>
+                    <button class="btn-primary" onclick="runComplianceCheck()">
+                        ▶ Run Compliance Check
+                    </button>
+                    <p id="lastScan">Last Scan: —</p>
+                </div>
+
+                <div class="AI Actions">
+                    <input type="text" placeholder="🧠 Ask AI..." class="ai-chat">
+                </div>
+            </div>
+        </aside>
+
+        <!---------CENTER PANEL -AI INTERLLIGENCE CORE------>
+        <section class="center-panel panel">
+            <div class="compliance-shield">
+                <canvas id="complianceGauge" width="200" height="200"></canvas>
+                <p>Overall Compliance</p>
+            </div>
+
+            <div class="AI Summary">
+                <p>Your company is mostly compliant with GDPR. Two HR-related policies require updates to avoid medium-risk exposure</p>
+                <div class="AI Actions">
+                    <button class="btn-primary" onclick="viewIssues()">✅ View Issues</button>
+                    <button class="btn-primary" onclick="generateReport()">📄 Generate Report</button>
+                </div>
+                <div id="aiDynamicContent"></div>
+            </div>
+        </section>
+
+        <!-------THIS IS NAVBAR PANELS------------------------------->
+        <!------Policies Panel-->
+        <section class="panel-content" data-panel="policies">
+            <h2>Policies</h2>
+            <div style="margin-bottom: 1rem">
+                <button class="btn-primary" onclick="addPolicy()">➕ Add Policy</button>
+     
+           </div>
+            <div id="policyList">
+                <!-----JS will filled this for me-->
+            </div>
+        </section>
+
+        <!-----Risk Panel---->
+        <section class="panel-content" data-panel="risks">
+            <h2>Risks</h2>
+            <div id="risksList">
+                <!------JS will fill this for me-->
+            </div>
+        </section>
+
+        <!-----Reports Panel-->
+        <section class="panel-content" data-panel="reports">
+            <h2>Reports</h2>
+            <div id="reportsList">
+                 <!-----------JS will fill this for me-------------->
+            </div> 
+        </section>
+
+        <!------Settings Panel---->
+        <section class="panel-content" data-panel="settings">
+            <h2>Settings</h2>
+            <button class="btn-primary" onclick="saveSettings()">💾 Save Settings</button>
+            <label>
+                Company Name
+                <input type="text" value="crownverse lid" />
+            </label>
+            <label>
+                Enable Email Alerts
+                <input type="checkbox" checked />
+            </label>
+            <label>
+                AI Review Level
+                <select>
+                    <option>Basic</option>
+                    <option>Advanced</option>
+                </select>
+            </label>
+        </section>
+
+        <!--------------This is Footer Panel----------------------->
+        <section class="panel-content" data-panel="privacy">
+            <h1>Privacy</h1>
+            <div class="footer-content-area" id="privacyContent"></div>
+        </section>
+
+        <section class="panel-content" data-panel="terms">
+            <h1>Terms</h1>
+            <div class="footer-content-area" id="termsContent"></div>
+        </section>
+
+        <section class="panel-content" data-panel="contact">
+            <h1>Contact</h1>
+            <div class="footer-content-area" id="contactContent"></div>
+        </section>
+
+
+        <!---------RIGHT PANEL -RISK INDICATORS-------->
+        <aside class="right-panel panel">
+            <h3>Risk Indicators</h3>
+            <div class="risk-meter">
+                <p>🔐 Data Privacy Risk</p>
+                <canvas class="risk-gauge" data-value="25"></canvas>
+            </div>
+            <div class="risk-meter">
+                <p>👥 HR Compliance Risk</p>
+                <canvas class="risk-gauge" data-value="45"></canvas>
+            </div>
+            <div class="risk-meter">
+                <p>📜 Policy Gaps</p>
+                <canvas class="risk-gauge" data-value="30"></canvas>
+            </div>
+            <div class="risk-meter">
+                <p>⚠️ Overall Exposure</p>
+                <canvas class="risk-gauge" data-value="51"></canvas>
+            </div>
+        </aside>
+
+        <!------Bottom Section - Findings & Actions -->
+        <section class="bottom-section panel">
+            <div class="findings">
+                <h3>Recent Findings</h3>
+                <ul>
+                    <li>Missing consent clause</li>
+                    <li>Outdated employee handbook</li>
+                    <li>No data retention policy</li>
+                </ul>
+            </div>
+            <div class="recommendations">
+                <h3>AI Recommendations</h3>
+                <div class="rec-card panel">
+                    <p>Update privacy notice</p>
+                    <button class="btn-primary" onclick="applyRecommendation(this)">Apply Recommendation</button>
+                    <button class="btn-primary" onclick="markAsReviewed(this)">Mark as Reviewed</button>
+                </div>
+                <div class="rec-card panel">
+                    <p>Add data retention timeline</p>
+                    <button class="btn-primary" onclick="applyRecommendation(this)">Apply Recommendation</button>
+                    <button class="btn-primary" onclick="markAsReviewed(this)">Mark as Reviewed</button>
+                </div>
+                <div class="rec-card panel">
+                    <p>Review employee onboarding policy</p>
+                    <button class="btn-primary" onclick="applyRecommendation(this)">Apply Recommendation</button>
+                    <button class="btn-primary" onclick="markAsReviewed(this)">Mark as Reviewed</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer panel">
+            <div class="footer-right">
+                <h1>CompliAI</h1>
+            </div>
+            <div class="footer-left">
+                <ul class="footer-tabs">
+                    <li class="active" data-tab="privacy">Privacy</li>
+                    <li data-tab="terms">Terms</li>
+                    <li data-tab="contact">Contact</li>
+                </ul>
+            </div>
+        </footer>
+    </main>
+
+          <script src="js/app.js"></script>
+
+    </body>
+    </html>
