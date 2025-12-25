@@ -27,7 +27,7 @@ The system is built for rapid deployment as an internal tool or prototype for co
 - Footer navigation for Privacy, Terms, and Contact information
 
 - Modular structure for easy expansion
-- 
+  
 
 **Tech Stack**
 
@@ -37,6 +37,7 @@ The system is built for rapid deployment as an internal tool or prototype for co
 
 **Backend (Mock)** - 	Sample JSON + simulated fetch calls
 
+--------------------------------------------------------------------------------------------------
 
 
 **Full Stack Software Developer**
