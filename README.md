@@ -4,6 +4,7 @@ AI-Assisted Compliance Monitoring Dashboard
 
 **> Developed as part of my internship project in compliance automation and AI-based reporting systems.**
 
+------------------------------------------------------------------------------------------------------------------
 
 **Overview**
 
@@ -11,6 +12,7 @@ CompliAI is a lightweight web application designed to help organizations monitor
 
 The system is built for rapid deployment as an internal tool or prototype for compliance automation platforms.
 
+---------------------------------------------------------------------------------------------------------------------
 
 **Features**
 
@@ -28,6 +30,7 @@ The system is built for rapid deployment as an internal tool or prototype for co
 
 - Modular structure for easy expansion
   
+--------------------------------------------------------------------------------------------------------------------
 
 **Tech Stack**
 
