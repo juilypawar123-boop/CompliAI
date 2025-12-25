@@ -1,6 +1,6 @@
-﻿/******************************************************
+/******************************************************
  * COMPLIAI - MAIN APPLICATION JS
- * Single Page App Logic
+ * This is my single Page App Logic
  ******************************************************/
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /******************************************************
- * 1️⃣ TOP NAVIGATION BAR TAB SWITCHING
+ *TOP NAVIGATION BAR TAB SWITCHING
  ******************************************************/
 function initNavigationTabs() {
     const tabs = document.querySelectorAll(".nav-tabs li");
@@ -41,113 +41,122 @@ function initNavigationTabs() {
                 case "policies":
                     loadPolicies();
                     break;
-                case "risks":
-                    loadRisks();
+                case "risk":
+                    loadRisk();
                     break;
-                case "reports":
-                    loadReports();
+                case "report":
+                    loadReport();
                     break;
             }
         });
     });
 }
-async function loadPolicies() {                  //Load Policies//
-    const container = document.getElementById("policyList");
-    if (!container) return; // safety check
+
+async function loadPolicies() {
+    const container = document.getElementById("policiesList");
+    if (!container) return;
     container.innerHTML = "";
 
-    let data = [];
-    try {
-        const res = await fetch("/api/policy");
-        data = await res.json();
-    } catch (err) {
-        console.warn("Failed to fetch policy, using sample data.", err);
-        data = [
-            { icon: "✅", name: "Incomplete Remote Work Security Policy", status: "Updated" },
-            { icon: "✅", name: "Lack of Email Encryption Policy", status: "Need to update ASAP" },
-            { icon: "✅", name: "Weak Password Management Policy", status: "On Priority" },
-            { icon: "✅", name: "No Data Classification Guidelines", status: "Update is in process" },
-        ];
-    }
+    const data = [
+        { icon: "✅", name: "Incomplete Remote Work Security Policy", status: "Updated" },
+        { icon: "✅", name: "Lack of Email Encryption Policy", status: "Need to update ASAP" },
+        { icon: "✅", name: "Weak Password Management Policy", status: "On Priority" },
+        { icon: "✅", name: "No Data Classification Guidelines", status: "Update is in process" }
+    ];
 
     data.forEach(p => {
         container.innerHTML += `
             <div class="card">
-                <p>📄 ${p.name}</p>
+                <p>${p.icon} ${p.name}</p>
                 <p>Status: ${p.status}</p>
             </div>
         `;
     });
 }
 
-async function loadRisks() {                          // Load Risks//
-    const container = document.getElementById("risksList");
-    if (!container) return; // safety check
+async function loadRisk() {
+    const container = document.getElementById("riskList");
+    if (!container) return;
     container.innerHTML = "";
 
-    let data = [];
-    try {
-        const res = await fetch("/api/risks");
-        data = await res.json();
-    } catch (err) {
-        console.warn("Failed to fetch risks, using sample data.", err);
-        data = [
+     const data = [
             { icon: "⚠️", name: "Unencrypted sensitive data storage", level: "High" },
             { icon: "⚠️", name: "Lack of multi-factor authentication", level: "Medium" },
             { icon: "⚠️", name: "Outdated third party software libraries", level: "High" },
             { icon: "⚠️", name: "Non-compliance with GDPR cookie policies", level: "Medium" }
-        ];
-    }
+     ]
 
-    data.forEach(r => {
+    data.forEach(p => {
         container.innerHTML += `
             <div class="card">
-                <p>${r.icon} ${r.name}</p>
-                <p>Severity: ${r.level}</p>
+                <p>${p.icon} ${p.name}</p>
+                <p>Level: ${p.level}</p>
             </div>
         `;
     });
+    
 }
 
-async function loadReports() {                        // Load Reports//
-    const container = document.getElementById("reportsList");
-    if (!container) return; 
+async function loadReport() {
+    const container = document.getElementById("reportList");
+    if (!container) return;
     container.innerHTML = "";
 
-    let data = [];
-    try {
-        const res = await fetch("/api/reports");
-        data = await res.json();
-    } catch (err) {
-        console.warn("Failed to fetch reports, using sample data.", err);
-        data = [
+
+    const data = [
             { icon: "🔒", name: "IT Security Audit Report", date: "Jun 2025" },
             { icon: "📊", name: "Quarterly Risk Assessment", date: "Apr 2025" },
             { icon: "🛡️", name: "Data Privacy Impact Assessment", date: "Mar 2025" },
             { icon: "📄", name: "Vendor GDPR Compliance Report", date: "Feb 2025" },
-        ];
-    }
+    ]
 
-    data.forEach(r => {
+    data.forEach(p => {
         container.innerHTML += `
             <div class="card">
-                <p>${r.icon} ${r.name}</p>
-                <p>Date: ${r.date}</p>
+                <p>${p.icon} ${p.name}</p>
+                <p>Status: ${p.status}</p>
             </div>
         `;
     });
+    
 }
 
-async function saveSettings() {                             //Load Settings//
-    await fetch("/api/settings", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ notifications: true })
+// Helper rendering
+function renderList(container, data, template) {
+    data.forEach(item => container.innerHTML += template(item));
+}
+
+function renderFallback(container, items) {
+    items.forEach(item => {
+        container.innerHTML += `
+        <div class="card">
+            <p>${item.icon || ""} ${item.name}</p>
+            ${item.status ? `<p>Status: ${item.status}</p>` : ""}
+            ${item.level ? `<p>Severity: ${item.level}</p>` : ""}
+            ${item.date ? `<p>Date: ${item.date}</p>` : ""}
+        </div>`;
     });
-
-    alert("Settings saved");
 }
+function saveSettings() {
+    // Get input values
+    const companyName = document.querySelector('section[data-panel="settings"] input[type="text"]').value;
+    const emailAlerts = document.querySelector('section[data-panel="settings"] input[type="checkbox"]').checked;
+    const aiLevel = document.querySelector('section[data-panel="settings"] select').value;
 
+    // In this case I'm saving it in local storage
+    const settings = {
+        companyName,
+        emailAlerts,
+        aiLevel
+    };
+
+    // this will save the info in localStorage
+    localStorage.setItem("compliAISettings", JSON.stringify(settings));
+
+    // Confirmation message
+    alert("Settings saved successfully!");
+    console.log("Saved settings:", settings);
+}
 
 /******************************************************
  * FOOTER TAB SWITCHING (Privacy / Terms / Contact)
@@ -237,7 +246,7 @@ async function runComplianceCheck() {
 }
 
 /******************************************************
- * 5️⃣ NITROSENSE-STYLE ANIMATED CIRCULAR RISK GAUGES  ----- This is for our Risk Indicator Circular ring
+ * ANIMATED CIRCULAR RISK GAUGES  ----- This is for our Risk Indicator Circular ring
  ******************************************************/
 function initRiskGauges(reAnimate = false) {
     const gauges = document.querySelectorAll(".risk-gauge");
@@ -476,3 +485,29 @@ function markAsReviewed(button) {
 
     console.log("Recommendation marked as reviewed");
 }
+
+/***************************************************
+ * ADD POLICY BUTTON FUNCTION
+ ***************************************************/
+function addPolicy() {
+    const container = document.getElementById("policiesList");
+    if (!container) return;
+
+    // Prompt the user for policy details
+    const policyName = prompt("Enter the Policy Name:");
+    if (!policyName) return; // Exit if nothing entered
+
+    const policyStatus = prompt("Enter the Policy Status (e.g., Updated, Needs Review):") || "Pending";
+
+    // Create a new policy card
+    const card = document.createElement("div");
+    card.classList.add("card");
+    card.innerHTML = `
+        <p>✅ ${policyName}</p>
+        <p>Status: ${policyStatus}</p>
+    `;
+
+    // Append the new card to the list
+    container.appendChild(card);
+}
+    
