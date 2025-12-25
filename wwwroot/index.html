@@ -16,11 +16,9 @@
         </div>
         <div class="nav-center">
             <ul class="nav-tabs">
-                <!-----Tabs on Navbar-->
-                <li class="active" data-tab="overview">Overview</li>
-                <li data-tab="policies">Policies</li>
-                <li data-tab="risks">Risks</li>
-                <li data-tab="reports">Reports</li>
+                <li data-tab="policies" class="active">Policies</li>
+                <li data-tab="risk">Risk</li>
+                <li data-tab="report">Reports</li>
                 <li data-tab="settings">Settings</li>
             </ul>
         </div>
@@ -80,9 +78,9 @@
                 <!----------CARD 3 (ACTION)----->
                 <div class="card">
                     <h3>Actions</h3>
-                    <button class="btn-primary" onclick="runComplianceCheck()">
-                        ▶ Run Compliance Check
-                    </button>
+                    <button class="btn-primary" onclick="runComplianceCheck()">▶ Run Compliance Check</button>
+                    <p id="complianceScore">Score: —</p>
+                    <p id="complianceSummary">Summary: —</p>
                     <p id="lastScan">Last Scan: —</p>
                 </div>
 
@@ -115,25 +113,24 @@
             <h2>Policies</h2>
             <div style="margin-bottom: 1rem">
                 <button class="btn-primary" onclick="addPolicy()">➕ Add Policy</button>
-     
            </div>
-            <div id="policyList">
+            <div id="policiesList">
                 <!-----JS will filled this for me-->
             </div>
         </section>
 
         <!-----Risk Panel---->
-        <section class="panel-content" data-panel="risks">
-            <h2>Risks</h2>
-            <div id="risksList">
+        <section class="panel-content" data-panel="risk">
+            <h2>Risk</h2>
+            <div id="riskList">
                 <!------JS will fill this for me-->
             </div>
         </section>
 
         <!-----Reports Panel-->
-        <section class="panel-content" data-panel="reports">
+        <section class="panel-content" data-panel="report">
             <h2>Reports</h2>
-            <div id="reportsList">
+            <div id="reportList">
                  <!-----------JS will fill this for me-------------->
             </div> 
         </section>
